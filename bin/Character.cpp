@@ -51,19 +51,19 @@ Texture Character::getTextureCharacter()
 }
 void Character::moveTop(float pos_y)
 {
-	m_character.move(0, (-pos_y - 32));
+	m_character.move(0, (-pos_y));
 }
 void Character::moveBottom(float pos_y)
 {
-	m_character.move(0, pos_y += 32);
+	m_character.move(0, pos_y);
 }
 void Character::moveRight(float pos_x)
 {
-	m_character.move(pos_x += 32, 0);
+	m_character.move(pos_x, 0);
 }
 void Character::moveLeft(float pos_x)
 {
-	m_character.move((-pos_x - 32) , 0);
+	m_character.move((-pos_x) , 0);
 }
 sf::Text Character::getText()
 {
