@@ -5,7 +5,7 @@ using namespace sf;
 CollisionManager::CollisionManager()
 {}
 
-bool CollisionManager::collisionTop(bool masque[], int x, int y, int tailleTuile)
+bool CollisionManager::collisionTop(std::vector<bool> masque, int x, int y, int tailleTuile)
 {
 	if (masque[int(x / tailleTuile) + 50 * int((y / tailleTuile) - 1)] == 1)
 	{
@@ -14,27 +14,27 @@ bool CollisionManager::collisionTop(bool masque[], int x, int y, int tailleTuile
 	}
 	return false;
 }
-bool CollisionManager::collisionDown(bool masque[], int x, int y, int tailleTuile)
+bool CollisionManager::collisionDown(std::vector<bool> masque, int x, int y, int tailleTuile)
 {
-	if (masque[int(x / tailleTuile) + 50 * int((y / tailleTuile) + 1)] == 1)
+	if (masque[int(x / tailleTuile) + 50 * int((y / tailleTuile) + 1)] == true)
 	{
 		std::cout << "collision bas" << std::endl;
 		return true;
 	}
 	return false;
 }
-bool CollisionManager::collisionRight(bool masque[], int x, int y, int tailleTuile)
+bool CollisionManager::collisionRight(std::vector<bool> masque, int x, int y, int tailleTuile)
 {
-	if (masque[int((x / tailleTuile) + 1) + 50 * int(y / tailleTuile)] == 1)
+	if (masque[int((x / tailleTuile) + 1) + 50 * int(y / tailleTuile)] == true)
 	{
 		std::cout << "Collision droite" << std::endl;
 		return true;
 	}
 	return false;
 }
-bool CollisionManager::collisionLeft(bool masque[], int x, int y, int tailleTuile)
+bool CollisionManager::collisionLeft(std::vector<bool> masque, int x, int y, int tailleTuile)
 {
-	if (masque[int((x / tailleTuile) - 1) + 50 * int(y / tailleTuile)] == 1)
+	if (masque[int((x / tailleTuile) - 1) + 50 * int(y / tailleTuile)] == true)
 	{
 		std::cout << "collision gauche" << std::endl;
 		return true;
