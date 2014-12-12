@@ -2,12 +2,14 @@
 
 using namespace sf;
 
-CollisionManager::CollisionManager()
-{}
+CollisionManager::CollisionManager(std::vector<bool> masque)
+{
+	masque.resize(1400);
+}
 
 bool CollisionManager::collisionTop(std::vector<bool> masque, int x, int y, int tailleTuile)
 {
-	if (masque[int(x / tailleTuile) + 50 * int((y / tailleTuile) - 1)] == 1)
+	if (masque[int(x / tailleTuile) + 50 * int((y / tailleTuile) - 1)] == true)
 	{
 		std::cout << "collision haut" << std::endl;
 		return true;

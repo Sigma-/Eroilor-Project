@@ -48,10 +48,10 @@ int main()
 
 	Character perso1("character.png", sf::Vector2f(0, 0));
 	Tilemap tilemap, tileItems;
-	CollisionManager colMgr;
+	CollisionManager colMgr(masque);
 
-	std::vector<int>level = tilemap.chargerFichierLevel("level.txt", sf::Vector2i(50,28));
-	std::vector<int>levelItems = tileItems.chargerFichierLevel("levelItems.txt",sf::Vector2i(50,28));
+	std::vector<unsigned int>level = tilemap.chargerFichierLevel("level.txt", sf::Vector2i(50,28));
+	std::vector<unsigned int>levelItems = tileItems.chargerFichierLevel("levelItems.txt",sf::Vector2i(50,28));
 
 	if (!tilemap.chargerMap("tilesMap.png", sf::Vector2u(32, 32), level, 50, 28))
 		return -1;

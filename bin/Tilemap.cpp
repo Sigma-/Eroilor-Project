@@ -4,7 +4,7 @@ using namespace sf;
 
 Tilemap::Tilemap()
 {}
-bool Tilemap::chargerMap(const std::string& tilePath, sf::Vector2u tileSize, std::vector<int> tiles, unsigned int width, unsigned int height)
+bool Tilemap::chargerMap(const std::string& tilePath, sf::Vector2u tileSize, std::vector<unsigned int> tiles, unsigned int width, unsigned int height)
 {
 	if (!m_textureTile.loadFromFile(tilePath))
 	{
@@ -47,28 +47,28 @@ void Tilemap::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 	target.draw(m_vertices, states);
 }
-std::vector<int> Tilemap::chargerFichierLevel(const std::string& levelPath, sf::Vector2i dim)
+std::vector<unsigned int> Tilemap::chargerFichierLevel(const std::string& levelPath, sf::Vector2i dim)
 {
-	std::vector<int> conf;
-	conf.resize(dim.x, dim.y);
-	std::ifstream level(levelPath);
+	std::vector<unsigned int> conf;
+	conf.resize(dim.x * dim.y);
+	std::ifstream level;
 	level.open(levelPath.c_str());
 	std::string line(""), index("");
 	int count(0);
 
-	while(!level.eof())
+	while (!level.eof())
 	{
 		std::getline(level, line);
 		for (int i(0); i < line.length(); i++)
 		{
-			if (line[i] == ' ' || line[i] == ',')
-			{
+			if (line[i] == ',')
+				break;
+			else
+				index += line[i];
+
 				conf[count] = (atoi(index.c_str()));
 				index = "";
 				count++;
-			}
-			if (line[i] == ',')break;
-			else index += line[i];
 		}
 		index = "";
 	}
